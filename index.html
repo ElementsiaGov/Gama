@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+<link rel="icon" href="https://media.discordapp.net/attachments/1101785167233826846/1218912714366386266/Gama_logo-removebg-preview.png?ex=660963ed&is=65f6eeed&hm=749dbd70d6a1998c4cdc56c95b947dcb7968aca70e0e8223be352b87f2ff8e76&=&format=webp&quality=lossless&width=442&height=437">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif; /* Use Google Fonts for a modern look */
+    overflow: hidden;
+    background-color: #f4f4f4; /* Light gray background */
+    color: #333; /* Dark gray for text */
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .message {
+    display: none; /* Hide the message */
+  }
+  
+  .subtext {
+    font-size: 35px;
+    margin-top: 10px;
+    color: #000000; /* Black color */
+    opacity: 0; /* Initially hidden */
+    animation: fadeinSubtext 4s forwards; /* Fade-in animation for subtext */
+  }
+
+  .icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    opacity: 0; /* Initially hidden */
+    animation: fadeinIcons 4s forwards; /* Fade-in animation for icons */
+  }
+
+  .loader {
+    display: none; /* Initially hide loader */
+    margin-top: 20px;
+    font-size: 2em;
+    color: #000000; /* Black color */
+  }
+
+  @keyframes fadeinSubtext {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes fadeinIcons {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* Background animation */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: white;
+    background-size: 200% 200%;
+    animation: gradient 15s ease infinite;
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* Flashing dot */
+  .flashing-dot {
+    display: inline-block;
+    margin-left: 5px;
+    animation: blink-dot 1s infinite;
+  }
+
+  @keyframes blink-dot {
+    0%, 50% {
+      opacity: 1;
+    }
+    51%, 100% {
+      opacity: 0;
+    }
+  }
+
+  /* Loading spinner animation */
+  .loader i {
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <p class="subtext">Choose a device<span class="flashing-dot">.</span></p>
+  <div class="icons">
+    <a href="desktop.html" onclick="showLoader(event)">
+      <img src="https://media.discordapp.net/attachments/1101785167233826846/1218873823370412122/computer.gif?ex=66093fb5&is=65f6cab5&hm=2d23d95066a9a5b12c0a217909b5029a9ffcc565cf3654ac733347facaa09f66&=&width=437&height=437" alt="Desktop Icon" style="width: 100px; height: auto;">
+    </a>
+    <span style="font-size: 2em; margin: 0 20px;">OR</span>
+    <a href="mobile.html" onclick="showLoader(event)">
+      <img src="https://media.discordapp.net/attachments/1101785167233826846/1218874042996621342/responsive.gif?ex=66093fe9&is=65f6cae9&hm=4b121af8639448a88681184b7399b378f4279b271d03ffbc7b821c7d3a71a6c1&=&width=662&height=662" alt="Mobile Icon" style="width: 100px; height: auto;">
+    </a>
+  </div>
+  <div class="loader" id="loader"><i class="fas fa-spinner"></i></div>
+</div>
+<script>
+  function showLoader(event) {
+    document.getElementById("loader").style.display = "block"; // Show loader
+    setTimeout(function() {
+      document.getElementById("loader").style.display = "none"; // Hide loader after delay
+      window.location.href = event.target.closest("a").href; // Redirect to the selected page
+    }, 2000); // Delay in milliseconds
+    event.preventDefault(); // Prevent default link behavior
+  }
+</script>
+</body>
+</html>
